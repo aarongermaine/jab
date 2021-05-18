@@ -1,2 +1,2 @@
 # jab
-A music rating app that user can personalize to their needs!
+A music rating app that a user can personalize to their needs!
