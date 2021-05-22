@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+
+//use swtich and react router here
+//go with login as the default
+//use context to figure signed in/sign out
+//use that to continue redirection.
+//leverage the react context API to figure the logged in stuff.
+//
 class App extends Component {
   render() {
     return (
@@ -18,8 +25,8 @@ class App extends Component {
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-{/*           
-          <iframe src="https://open.spotify.com/embed/track/2IRZnDFmlqMuOrYOLnZZyc" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
+
+          <iframe src="https://open.spotify.com/embed/track/2IRZnDFmlqMuOrYOLnZZyc" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </p>
       </div>
     );
