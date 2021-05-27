@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { User } = require("../models");
 const db = require("../models");
 
 // This file empties the Books collection and inserts the books below
@@ -10,7 +11,13 @@ mongoose.connect(
 
 //spotify:track:2IRZnDFmlqMuOrYOLnZZyc
 
-
+const userSeed = [
+    {
+        username: "root",
+        password: "root",
+        email: "roo@roo.com"
+    }
+]
 
 const songSeed = [
     {
@@ -259,6 +266,20 @@ db.Song
     .then(() => db.Song.collection.insertMany(songSeed))
     .then(data => {
         console.log(data.result.n + " records inserted!");
+        // process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        // process.exit(1);
+    });
+
+const SingleUserSeed = new User(userSeed[0]);
+db.User
+    .remove({})
+    .then(() => SingleUserSeed.save())
+    .then(data => {
+
+        console.log("1 records inserted!");
         process.exit(0);
     })
     .catch(err => {
