@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const songRatingSchema = new Schema({
     songTitle: { type: String, required: true },
@@ -8,6 +8,7 @@ const songRatingSchema = new Schema({
     //
     artists: { type: String, required: true },
     rating: { type: Number, required: true },
+    numOfRatings: { type: Number, required: true },
     genre: { type: String, required: true },
     attribute: { type: String, required: true }
 
