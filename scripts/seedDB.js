@@ -9,7 +9,7 @@ mongoose.connect(
 );
 
 //spotify:track:2IRZnDFmlqMuOrYOLnZZyc
-const
+
 
 
 const songSeed = [
@@ -18,6 +18,7 @@ const songSeed = [
         spotifyID: "2IRZnDFmlqMuOrYOLnZZyc",
         artists: "Meek Mill",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -26,6 +27,7 @@ const songSeed = [
         spotifyID: "5lFDtgWsjRJu8fPOAyJIAK",
         artists: "Drake",
         rating: 4.5,
+        numOfRatings: 12,
         genre: "Rap",
         attribute: ""
     },
@@ -34,6 +36,7 @@ const songSeed = [
         spotifyID: "42zd6DYQ4o4SECmTITrM1U",
         artists: "Meek Mill",
         rating: 4.5,
+        numOfRatings: 8,
         genre: "Rap",
         attribute: ""
     },
@@ -42,6 +45,7 @@ const songSeed = [
         spotifyID: "1I55Ea0zVoSKs6MqW7DQ3i",
         artists: "Drake",
         rating: 4.5,
+        numOfRatings: 15,
         genre: "Rap",
         attribute: ""
     },
@@ -50,6 +54,7 @@ const songSeed = [
         spotifyID: "0nbXyq5TXYPCO7pr3N8S4I",
         artists: "Roddy Ricch",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -58,6 +63,7 @@ const songSeed = [
         spotifyID: "4fzsfWzRhPawzqhX8Qt9F3",
         artists: "Kanye West",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -66,6 +72,7 @@ const songSeed = [
         spotifyID: "3EQ9QP2E7wjYQba8OSPBst",
         artists: "Meek Mill",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -74,6 +81,7 @@ const songSeed = [
         spotifyID: "2gZUPNdnz5Y45eiGxpHGSc",
         artists: "Kanye West",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -82,6 +90,7 @@ const songSeed = [
         spotifyID: "3qN5qMTKyEEmiTZD38BNTT",
         artists: "Drake",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -90,6 +99,7 @@ const songSeed = [
         spotifyID: "27GmP9AWRs744SzKcpJsTZ",
         artists: "Drake",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -98,6 +108,7 @@ const songSeed = [
         spotifyID: "69bHJ9qs5FrUJbKP8xU8uZ",
         artists: "50 Cent",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -106,6 +117,7 @@ const songSeed = [
         spotifyID: "4FmCUATNIarCQh72JYdvnm",
         artists: "Frank Sinatra",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -114,6 +126,7 @@ const songSeed = [
         spotifyID: "1oeovPFdMfedh7VpbXg6YP",
         artists: "Boards of Canada",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Chill",
         attribute: ""
     },
@@ -122,6 +135,7 @@ const songSeed = [
         spotifyID: "3KzgdYUlqV6TOG7JCmx2Wg",
         artists: "Bobby Darin",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -130,6 +144,7 @@ const songSeed = [
         spotifyID: "3QyPsavxL681NX7SPVGd5T",
         artists: "Dean Martin",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -138,6 +153,7 @@ const songSeed = [
         spotifyID: "0LuCswQI54QlK6EVez06Bw",
         artists: "S.Maharba",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Chill",
         attribute: ""
     },
@@ -146,6 +162,7 @@ const songSeed = [
         spotifyID: "2dv0kUfBzoEIQKoHt9ygYs",
         artists: "Shlohmo",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -154,6 +171,7 @@ const songSeed = [
         spotifyID: "2w4EpqGasrz9qdTwocx54t",
         artists: "Com Truise",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -162,6 +180,7 @@ const songSeed = [
         spotifyID: "5Qv2Nby1xTr9pQyjkrc94J",
         artists: "Radiohead",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -170,6 +189,7 @@ const songSeed = [
         spotifyID: "2EEinN4Zk8MUv4OQuLsTBj",
         artists: "New Order",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -178,6 +198,7 @@ const songSeed = [
         spotifyID: "3htO9aATRyGh3SC72v91hW",
         artists: "Boards of Canada",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     }
