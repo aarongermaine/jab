@@ -26,21 +26,16 @@ function SongList() {
 
   return (
     <div className="App">
-      <div class="sidenav">
-        <a href="#">Home</a>
-        <a href="#">My Favorites</a>
-      </div>
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h2></h2>
       </div>
       <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
         <iframe
           src="https://open.spotify.com/embed/track/2IRZnDFmlqMuOrYOLnZZyc"
           width="300"
-          height="80"
-          frameborder="0"
+          height="400"
+          frameborder="10"
           allowtransparency="true"
           allow="encrypted-media"
         ></iframe>

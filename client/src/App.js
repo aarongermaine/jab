@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./pages/Home";
 import HomePage from "./components/HomePage";
+import Navbar from "./components/Navbar";
 //import logo from "./logo.svg";
 import "./App.css";
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <Router>
       <div>
+        <Navbar />
         <Home>
           <HomePage></HomePage>
         </Home>
