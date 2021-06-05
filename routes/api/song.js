@@ -33,6 +33,33 @@ router.get("/allRatings", async function (req, res) {
     res.json(docArray);
 })
 
+//pass songid and account id.
+//or song spotify and account name?
+router.get("/rating", async function (req, res) {
+    let spotifySongId = req.body.id;
+    let raterUsername = req.body.username;
+    let userId;
+    let songId1;
+    console.log("got rating request")
+    let user = await User.findOne({ username: raterUsername });
+    if (user) {
+        userId = user.id
+    } else {
+        res.status(404).send({ error: "user not found" })
+    }
+    let song = await Songs.findOne({ spotifyID: spotifySongId });
+    console.log(song)
+
+    if (song) {
+        songId1 = song.id
+    } else {
+        res.status(404).send({ error: "song not found" })
+    }
+    let existingRating = await Ratings.findOne({ songId: songId1, accountId: userId })
+    res.json(existingRating)
+})
+
+
 
 //Needs to be passed the spotify ID, the new rating, and the username of the person rating it.
 router.post("/rateSong", async function (req, res) {
@@ -41,6 +68,7 @@ router.post("/rateSong", async function (req, res) {
     let raterUsername = req.body.username;
     let userId;
     let songId1;
+    console.log("got rating request")
     let user = await User.findOne({ username: raterUsername });
     if (user) {
         userId = user.id
@@ -70,15 +98,15 @@ router.post("/rateSong", async function (req, res) {
     } else {
 
         //add rating
-        let newRating = new Rating({ songId: songId1, accountId: userId, rating: songRating });
+        let newRating = new Ratings({ songId: songId1, accountId: userId, rating: songRating });
         newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
 
         //update song's rating.
-        song.rating = newRating(song.rating, song.numOfRatings, songRating);
+        song.rating = getNewRating(song.rating, song.numOfRatings, songRating);
         song.numOfRatings = 1 + song.numOfRatings;
         let ressy = await Songs.updateOne({ id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
         console.log(ressy)
-
+        res.json(ressy)
 
     }
 
@@ -97,16 +125,20 @@ router.get("/song/:id/:rating", async function (req, res) {
     res.json(song)
 })
 
+
+
+module.exports = router;
+
+
 //parse ALL the floats
 //essentially just returns a new overall rating given rating, amount of ratings, and a new rating.
-function newRating(rating, numOfRatings, newRating) {
+function getNewRating(rating, numOfRatings, newRating) {
     let totalRatings = parseFloat(numOfRatings + 1)
     let totalRatingThing = (rating * parseFloat(numOfRatings)) + parseFloat(newRating)
     return parseFloat(((totalRatingThing) / (totalRatings)).toFixed(1))
 }
 
 
-module.exports = router;
 
 function scuffedFisherYates(array) {
     //this must be static.
