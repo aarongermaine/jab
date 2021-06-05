@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import HomePage from "./components/HomePage";
+import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 //import logo from "./logo.svg";
 import "./App.css";
@@ -17,9 +18,10 @@ function App() {
     <Router>
       <div>
         <Navbar />
-        <Home>
-          <HomePage></HomePage>
-        </Home>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
       </div>
     </Router>
   );

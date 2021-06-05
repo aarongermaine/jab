@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
 
 function Navbar() {
   return (
@@ -10,7 +9,7 @@ function Navbar() {
       </Link>
       <div>
         <ul className="navbar-nav">
-          <li>
+          <li class="animate__zoomIn">
             <Link to="/login">Login</Link>
           </li>
         </ul>
