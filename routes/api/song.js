@@ -77,56 +77,49 @@ router.post("/rateSong", async function (req, res) {
         res.status(404).send({ error: "user not found" })
     }
     let song = await Songs.findOne({ spotifyID: spotifySongId });
-    song = song.toObject()
     console.log(song)
-
     if (song) {
         songId1 = song.id
     } else {
         res.status(404).send({ error: "song not found" })
     }
+    console.log(typeof songId1, typeof userId)
     let existingRating = await Ratings.findOne({ songId: songId1, accountId: userId })
 
-    //Can't update with how it works now.
-    //well, can absolutely update it, actually.
-    //But would have to look for a rating whenever we change pages to like have it there
-    // so someone knows they already rated it, and what they rated it.
-    // if (existingRating) {
-    //     //this may be removed, but later.
-    //     //actually, just need the previous rating, subtract that from the new rating
-    //     //Do some magic here and there.
-    //     //And bam, new rating.
-    //     res.status(404).send({ error: "song already rated by this user." })
-    // } else {
+    if (existingRating) {
+        //update rating
+        let newRating = getNewRating(song.rating, song.numOfRatings, songRating - existingRating.rating, false)
+        let response1 = await Ratings.updateOne({ _id: existingRating.id }, { rating: songRating })
+        let ressy = await Songs.updateOne({ _id: songId1 }, { rating: newRating })
+        res.json(ressy)
+    } else {
+        //add rating
+        let newRating = new Ratings({ songId: songId1, accountId: userId, rating: songRating });
+        newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
+        song.numOfRatings = 1 + song.numOfRatings;
+        //update song's rating.
+        song.rating = getNewRating(song.rating, song.numOfRatings, songRating, true);
 
-    //add rating
-    let newRating = new Ratings({ songId: songId1, accountId: userId, rating: songRating });
-    newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
+        let ressy = await Songs.updateOne({ _id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
 
-    //update song's rating.
-    song.rating = getNewRating(song.rating, song.numOfRatings, songRating);
-    song.numOfRatings = 1 + song.numOfRatings;
-    let ressy = await Songs.updateOne({ id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
-    console.log(song)
-    console.log(ressy)
-    res.json(ressy)
+        res.json(ressy)
 
-    // }
+    }
 
 
     // res.json(song)
 })
 
-router.get("/song/:id/:rating", async function (req, res) {
-    console.log(req.body)
-    let song = await (await Songs.findOne({ id: req.params.Id }).exec()).toObject();
-    song.rating = newRating(song.rating, song.numOfRatings, req.params.rating);
-    song.numOfRatings = 1 + song.numOfRatings;
-    let realID = req.params.Id
-    let ressy = await Songs.updateOne({ id: realID }, { rating: song.rating, numOfRatings: song.numOfRatings })
-    console.log(ressy)
-    res.json(song)
-})
+// router.get("/song/:id/:rating", async function (req, res) {
+//     console.log(req.body)
+//     let song = await (await Songs.findOne({ id: req.params.Id }).exec()).toObject();
+//     song.rating = newRating(song.rating, song.numOfRatings, req.params.rating);
+//     song.numOfRatings = 1 + song.numOfRatings;
+//     let realID = req.params.Id
+//     let ressy = await Songs.updateOne({ id: realID }, { rating: song.rating, numOfRatings: song.numOfRatings })
+//     console.log(ressy)
+//     res.json(song)
+// })
 
 
 
@@ -135,8 +128,8 @@ module.exports = router;
 
 //parse ALL the floats
 //essentially just returns a new overall rating given rating, amount of ratings, and a new rating.
-function getNewRating(rating, numOfRatings, newRating) {
-    let totalRatings = parseFloat(numOfRatings + 1)
+function getNewRating(rating, numOfRatings, newRating, ratingChange) {
+    let totalRatings = ratingChange ? numOfRatings + 1 : numOfRatings;
     let totalRatingThing = (rating * parseFloat(numOfRatings)) + parseFloat(newRating)
     return parseFloat(((totalRatingThing) / (totalRatings)).toFixed(1))
 }
