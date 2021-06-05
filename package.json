@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "debug": "^4.3.1",
+    "bcrypt": "^5.0.1",
     "express": "^4.16.3",
     "http-errors": "^1.8.0",
     "if-env": "^1.0.4",

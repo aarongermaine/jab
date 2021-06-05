@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { User } = require("../models");
 const db = require("../models");
 
 // This file empties the Books collection and inserts the books below
@@ -9,15 +10,22 @@ mongoose.connect(
 );
 
 //spotify:track:2IRZnDFmlqMuOrYOLnZZyc
-const
 
+const userSeed = [
+    {
+        username: "root",
+        password: "root",
+        email: "roo@roo.com"
+    }
+]
 
 const songSeed = [
     {
         songTitle: "Going Bad (feat. Drake)",
         spotifyID: "2IRZnDFmlqMuOrYOLnZZyc",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -25,7 +33,8 @@ const songSeed = [
         songTitle: "Back To Back",
         spotifyID: "5lFDtgWsjRJu8fPOAyJIAK",
         artists: "Drake",
-        rating: 4.5,
+        rating: 4,
+        numOfRatings: 12,
         genre: "Rap",
         attribute: ""
     },
@@ -33,7 +42,8 @@ const songSeed = [
         songTitle: "Dreams and Nightmares",
         spotifyID: "42zd6DYQ4o4SECmTITrM1U",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 3,
+        numOfRatings: 8,
         genre: "Rap",
         attribute: ""
     },
@@ -41,7 +51,8 @@ const songSeed = [
         songTitle: "War",
         spotifyID: "1I55Ea0zVoSKs6MqW7DQ3i",
         artists: "Drake",
-        rating: 4.5,
+        rating: 2.5,
+        numOfRatings: 15,
         genre: "Rap",
         attribute: ""
     },
@@ -49,7 +60,8 @@ const songSeed = [
         songTitle: "The Box",
         spotifyID: "0nbXyq5TXYPCO7pr3N8S4I",
         artists: "Roddy Ricch",
-        rating: 4.5,
+        rating: 3,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -57,7 +69,8 @@ const songSeed = [
         songTitle: "Stronger",
         spotifyID: "4fzsfWzRhPawzqhX8Qt9F3",
         artists: "Kanye West",
-        rating: 4.5,
+        rating: 4.0,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -65,7 +78,8 @@ const songSeed = [
         songTitle: "Intro",
         spotifyID: "3EQ9QP2E7wjYQba8OSPBst",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 48.0,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -73,7 +87,8 @@ const songSeed = [
         songTitle: "Power",
         spotifyID: "2gZUPNdnz5Y45eiGxpHGSc",
         artists: "Kanye West",
-        rating: 4.5,
+        rating: 4.0,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -81,7 +96,8 @@ const songSeed = [
         songTitle: "I'm Upset",
         spotifyID: "3qN5qMTKyEEmiTZD38BNTT",
         artists: "Drake",
-        rating: 4.5,
+        rating: 1.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -89,7 +105,8 @@ const songSeed = [
         songTitle: "Jumpman",
         spotifyID: "27GmP9AWRs744SzKcpJsTZ",
         artists: "Drake",
-        rating: 4.5,
+        rating: 0.0,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -97,7 +114,8 @@ const songSeed = [
         songTitle: "Disco Inferno",
         spotifyID: "69bHJ9qs5FrUJbKP8xU8uZ",
         artists: "50 Cent",
-        rating: 4.5,
+        rating: 22.0,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -106,6 +124,7 @@ const songSeed = [
         spotifyID: "4FmCUATNIarCQh72JYdvnm",
         artists: "Frank Sinatra",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -114,6 +133,7 @@ const songSeed = [
         spotifyID: "1oeovPFdMfedh7VpbXg6YP",
         artists: "Boards of Canada",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Chill",
         attribute: ""
     },
@@ -122,6 +142,7 @@ const songSeed = [
         spotifyID: "3KzgdYUlqV6TOG7JCmx2Wg",
         artists: "Bobby Darin",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -130,6 +151,7 @@ const songSeed = [
         spotifyID: "3QyPsavxL681NX7SPVGd5T",
         artists: "Dean Martin",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -138,6 +160,7 @@ const songSeed = [
         spotifyID: "0LuCswQI54QlK6EVez06Bw",
         artists: "S.Maharba",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Chill",
         attribute: ""
     },
@@ -146,6 +169,7 @@ const songSeed = [
         spotifyID: "2dv0kUfBzoEIQKoHt9ygYs",
         artists: "Shlohmo",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Rap",
         attribute: ""
     },
@@ -154,6 +178,7 @@ const songSeed = [
         spotifyID: "2w4EpqGasrz9qdTwocx54t",
         artists: "Com Truise",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -161,7 +186,8 @@ const songSeed = [
         songTitle: "All I Need",
         spotifyID: "5Qv2Nby1xTr9pQyjkrc94J",
         artists: "Radiohead",
-        rating: 4.5,
+        rating: 0,
+        numOfRatings: 0,
         genre: "Pop",
         attribute: ""
     },
@@ -170,6 +196,7 @@ const songSeed = [
         spotifyID: "2EEinN4Zk8MUv4OQuLsTBj",
         artists: "New Order",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     },
@@ -178,6 +205,7 @@ const songSeed = [
         spotifyID: "3htO9aATRyGh3SC72v91hW",
         artists: "Boards of Canada",
         rating: 4.5,
+        numOfRatings: 10,
         genre: "Pop",
         attribute: ""
     }
@@ -238,6 +266,20 @@ db.Song
     .then(() => db.Song.collection.insertMany(songSeed))
     .then(data => {
         console.log(data.result.n + " records inserted!");
+        // process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        // process.exit(1);
+    });
+
+const SingleUserSeed = new User(userSeed[0]);
+db.User
+    .remove({})
+    .then(() => SingleUserSeed.save())
+    .then(data => {
+
+        console.log("1 records inserted!");
         process.exit(0);
     })
     .catch(err => {
