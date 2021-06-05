@@ -2,13 +2,8 @@
 const Songs = require("../../models/songs")
 const Ratings = require("../../models/ratings")
 const User = require("../../models/user");
-// const { Rating } = require("../../models");
 const router = require("express").Router();
-const songController = require("../../controllers/songController");
-const authController = require("../../controllers/authController");
 
-
-router.route("/login").get(authController.findall);
 //Well that was a damn nightmare, but now we know how to do this...
 //this return list of all songs, and has been shuffled.
 //Can always revert, but having shuffling available is wise.
@@ -139,17 +134,6 @@ function getNewRating(rating, numOfRatings, newRating, ratingChange) {
 }
 
 
-// <<<<<<< ratingsStuff
-// =======
-
-// router
-//   .route("/:id")
-//   .get(songController.findById)
-//   .put(songController.update)
-//   .delete(songController.remove);
-
-module.exports = router;
-// >>>>>>> main
 
 function scuffedFisherYates(array) {
     //this must be static.
