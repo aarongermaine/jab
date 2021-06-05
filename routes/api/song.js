@@ -35,6 +35,7 @@ router.get("/allRatings", async function (req, res) {
 
 //pass songid and account id.
 //or song spotify and account name?
+//will only find first
 router.get("/rating", async function (req, res) {
     let spotifySongId = req.body.id;
     let raterUsername = req.body.username;
@@ -76,6 +77,7 @@ router.post("/rateSong", async function (req, res) {
         res.status(404).send({ error: "user not found" })
     }
     let song = await Songs.findOne({ spotifyID: spotifySongId });
+    song = song.toObject()
     console.log(song)
 
     if (song) {
@@ -89,29 +91,30 @@ router.post("/rateSong", async function (req, res) {
     //well, can absolutely update it, actually.
     //But would have to look for a rating whenever we change pages to like have it there
     // so someone knows they already rated it, and what they rated it.
-    if (existingRating) {
-        //this may be removed, but later.
-        //actually, just need the previous rating, subtract that from the new rating
-        //Do some magic here and there.
-        //And bam, new rating.
-        res.status(404).send({ error: "song already rated by this user." })
-    } else {
+    // if (existingRating) {
+    //     //this may be removed, but later.
+    //     //actually, just need the previous rating, subtract that from the new rating
+    //     //Do some magic here and there.
+    //     //And bam, new rating.
+    //     res.status(404).send({ error: "song already rated by this user." })
+    // } else {
 
-        //add rating
-        let newRating = new Ratings({ songId: songId1, accountId: userId, rating: songRating });
-        newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
+    //add rating
+    let newRating = new Ratings({ songId: songId1, accountId: userId, rating: songRating });
+    newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
 
-        //update song's rating.
-        song.rating = getNewRating(song.rating, song.numOfRatings, songRating);
-        song.numOfRatings = 1 + song.numOfRatings;
-        let ressy = await Songs.updateOne({ id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
-        console.log(ressy)
-        res.json(ressy)
+    //update song's rating.
+    song.rating = getNewRating(song.rating, song.numOfRatings, songRating);
+    song.numOfRatings = 1 + song.numOfRatings;
+    let ressy = await Songs.updateOne({ id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
+    console.log(song)
+    console.log(ressy)
+    res.json(ressy)
 
-    }
+    // }
 
 
-    res.json(song)
+    // res.json(song)
 })
 
 router.get("/song/:id/:rating", async function (req, res) {
