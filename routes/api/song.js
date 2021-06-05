@@ -1,5 +1,8 @@
 
 const Songs = require("../../models/songs")
+const Ratings = require("../../models/ratings")
+const User = require("../../models/user");
+// const { Rating } = require("../../models");
 const router = require("express").Router();
 
 //Well that was a damn nightmare, but now we know how to do this...
@@ -17,15 +20,74 @@ router.get("/allSongs", async function (req, res) {
     res.json(docArray);
 })
 
-//gets ID from the params, and rating from the body?
-//Idk.
-router.post("/rateSong/:id", async function (req, res) {
-    let song = await Songs.findOne({ id: req.params.id }).exec();
-    res.json(song)
+router.get("/allSongsDesc", async function (req, res) {
+    let something = await Songs.find();
+    var docArray = something.map(function (model) { return model.toObject(); });
+    docArray.sort((a, b) => (a.rating > b.rating) ? -1 : 1)
+    res.json(docArray);
+})
 
+router.get("/allRatings", async function (req, res) {
+    let something = await Ratings.find();
+    var docArray = something.map(function (model) { return model.toObject(); });
+    res.json(docArray);
+})
+
+
+//Needs to be passed the spotify ID, the new rating, and the username of the person rating it.
+router.post("/rateSong", async function (req, res) {
+    let spotifySongId = req.body.id;
+    let songRating = req.body.rating;
+    let raterUsername = req.body.username;
+    let userId;
+    let songId1;
+    let user = await User.findOne({ username: raterUsername });
+    if (user) {
+        userId = user.id
+    } else {
+        res.status(404).send({ error: "user not found" })
+    }
+    let song = await Songs.findOne({ spotifyID: spotifySongId });
+    console.log(song)
+
+    if (song) {
+        songId1 = song.id
+    } else {
+        res.status(404).send({ error: "song not found" })
+    }
+    let existingRating = await Ratings.findOne({ songId: songId1, accountId: userId })
+
+    //Can't update with how it works now.
+    //well, can absolutely update it, actually.
+    //But would have to look for a rating whenever we change pages to like have it there
+    // so someone knows they already rated it, and what they rated it.
+    if (existingRating) {
+        //this may be removed, but later.
+        //actually, just need the previous rating, subtract that from the new rating
+        //Do some magic here and there.
+        //And bam, new rating.
+        res.status(404).send({ error: "song already rated by this user." })
+    } else {
+
+        //add rating
+        let newRating = new Rating({ songId: songId1, accountId: userId, rating: songRating });
+        newRating.save(function (err, result) { if (err) { console.log(err); } else { console.log(result) } })
+
+        //update song's rating.
+        song.rating = newRating(song.rating, song.numOfRatings, songRating);
+        song.numOfRatings = 1 + song.numOfRatings;
+        let ressy = await Songs.updateOne({ id: songId1 }, { rating: song.rating, numOfRatings: song.numOfRatings })
+        console.log(ressy)
+
+
+    }
+
+
+    res.json(song)
 })
 
 router.get("/song/:id/:rating", async function (req, res) {
+    console.log(req.body)
     let song = await (await Songs.findOne({ id: req.params.Id }).exec()).toObject();
     song.rating = newRating(song.rating, song.numOfRatings, req.params.rating);
     song.numOfRatings = 1 + song.numOfRatings;
@@ -33,10 +95,6 @@ router.get("/song/:id/:rating", async function (req, res) {
     let ressy = await Songs.updateOne({ id: realID }, { rating: song.rating, numOfRatings: song.numOfRatings })
     console.log(ressy)
     res.json(song)
-
-
-
-
 })
 
 //parse ALL the floats
@@ -46,8 +104,6 @@ function newRating(rating, numOfRatings, newRating) {
     let totalRatingThing = (rating * parseFloat(numOfRatings)) + parseFloat(newRating)
     return parseFloat(((totalRatingThing) / (totalRatings)).toFixed(1))
 }
-
-
 
 
 module.exports = router;
@@ -68,6 +124,8 @@ function scuffedFisherYates(array) {
         roll = Math.floor(Math.random() * array.length - 1)
         //roll should be 0-n.length-1.
         //splice returns the value taken out.
+        //it looks at the index, the first argument.
+        //And then it takes out x elements, second argument.
         spliced = array.splice(roll, 1)
         //copy sliced
         tempVal = Object.assign({}, spliced)
@@ -76,8 +134,8 @@ function scuffedFisherYates(array) {
     }
     //do last iteration outside of loop, cause effeciency.
     tempVal = Object.assign({}, array[0])
+    //[3,9,7,5,4,2,1,0]
     returnArr.unshift(tempVal)
     //return the arr.
     return returnArr
 }
-

@@ -24,7 +24,7 @@ const songSeed = [
         songTitle: "Going Bad (feat. Drake)",
         spotifyID: "2IRZnDFmlqMuOrYOLnZZyc",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 5,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -33,7 +33,7 @@ const songSeed = [
         songTitle: "Back To Back",
         spotifyID: "5lFDtgWsjRJu8fPOAyJIAK",
         artists: "Drake",
-        rating: 4.5,
+        rating: 4,
         numOfRatings: 12,
         genre: "Rap",
         attribute: ""
@@ -42,7 +42,7 @@ const songSeed = [
         songTitle: "Dreams and Nightmares",
         spotifyID: "42zd6DYQ4o4SECmTITrM1U",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 3,
         numOfRatings: 8,
         genre: "Rap",
         attribute: ""
@@ -51,7 +51,7 @@ const songSeed = [
         songTitle: "War",
         spotifyID: "1I55Ea0zVoSKs6MqW7DQ3i",
         artists: "Drake",
-        rating: 4.5,
+        rating: 2.5,
         numOfRatings: 15,
         genre: "Rap",
         attribute: ""
@@ -60,7 +60,7 @@ const songSeed = [
         songTitle: "The Box",
         spotifyID: "0nbXyq5TXYPCO7pr3N8S4I",
         artists: "Roddy Ricch",
-        rating: 4.5,
+        rating: 3,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -69,7 +69,7 @@ const songSeed = [
         songTitle: "Stronger",
         spotifyID: "4fzsfWzRhPawzqhX8Qt9F3",
         artists: "Kanye West",
-        rating: 4.5,
+        rating: 4.0,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -78,7 +78,7 @@ const songSeed = [
         songTitle: "Intro",
         spotifyID: "3EQ9QP2E7wjYQba8OSPBst",
         artists: "Meek Mill",
-        rating: 4.5,
+        rating: 48.0,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -87,7 +87,7 @@ const songSeed = [
         songTitle: "Power",
         spotifyID: "2gZUPNdnz5Y45eiGxpHGSc",
         artists: "Kanye West",
-        rating: 4.5,
+        rating: 4.0,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -96,7 +96,7 @@ const songSeed = [
         songTitle: "I'm Upset",
         spotifyID: "3qN5qMTKyEEmiTZD38BNTT",
         artists: "Drake",
-        rating: 4.5,
+        rating: 1.5,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -105,7 +105,7 @@ const songSeed = [
         songTitle: "Jumpman",
         spotifyID: "27GmP9AWRs744SzKcpJsTZ",
         artists: "Drake",
-        rating: 4.5,
+        rating: 0.0,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -114,7 +114,7 @@ const songSeed = [
         songTitle: "Disco Inferno",
         spotifyID: "69bHJ9qs5FrUJbKP8xU8uZ",
         artists: "50 Cent",
-        rating: 4.5,
+        rating: 22.0,
         numOfRatings: 10,
         genre: "Rap",
         attribute: ""
@@ -186,8 +186,8 @@ const songSeed = [
         songTitle: "All I Need",
         spotifyID: "5Qv2Nby1xTr9pQyjkrc94J",
         artists: "Radiohead",
-        rating: 4.5,
-        numOfRatings: 10,
+        rating: 0,
+        numOfRatings: 0,
         genre: "Pop",
         attribute: ""
     },
