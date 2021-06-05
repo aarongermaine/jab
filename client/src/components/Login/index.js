@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import logo from "../HomePage/logo1.png";
+import res from "../../utils/API";
 
 function Login() {
   return (
@@ -39,11 +40,13 @@ function Login() {
           ></input>
         </div>
         <br></br>
-        <ul>
-          <li>
-            <span>Submit</span>
-          </li>
-        </ul>
+        <div>
+          <ul>
+            <li>
+              <span onClick={res}>Submit</span>
+            </li>
+          </ul>
+        </div>
       </form>
     </div>
   );

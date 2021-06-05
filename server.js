@@ -8,6 +8,7 @@ let cookieParser = require("cookie-parser");
 
 let logger = require("morgan");
 
+
 const mongoose = require("mongoose")
 const myRoutes = require('./routes/index.js');
 
@@ -18,17 +19,17 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
+
 app.use(cookieParser());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/songRatingList"
+  process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
 );
 
 // require('./routes/api/song.js')(app);
-app.use("/", myRoutes)
 
 // Send every request to the React app
 // Define any API routes before this runs
