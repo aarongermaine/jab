@@ -11,7 +11,7 @@ let logger = require("morgan");
 
 const mongoose = require("mongoose")
 const myRoutes = require('./routes/index.js');
-
+app.use(myRoutes)
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

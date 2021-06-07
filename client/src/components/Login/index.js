@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import logo from "../HomePage/logo1.png";
+import logo from "../SongIFrame/logo1.png";
 import res from "../../utils/API";
 
 function Login() {
