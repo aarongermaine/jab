@@ -16,38 +16,6 @@
     <link href="style.css" type="text/css" rel="stylesheet" />
   </noscript>
   <style>
-    .thing {
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid #3498db;
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 2s linear infinite;
-      /* Safari */
-      animation: spin 2s linear infinite;
-    }
-
-    /* Safari */
-    @-webkit-keyframes spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
     .thing:before {
       content: 'The page is loading...';
       position: absolute;
@@ -76,6 +44,7 @@
 </head>
 
 <body class="thing">
+  <div></div>
   <noscript> You need to enable JavaScript to run this app. </noscript>
   <div id="root"></div>
   <!--
@@ -90,9 +59,5 @@
     -->
 </body>
 <script src="./api.js"></script>
-<script type="text/javascript">
-  function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }
-  loadCSS("styles.css");
-</script>
 
 </html>
