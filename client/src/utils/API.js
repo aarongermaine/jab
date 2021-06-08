@@ -13,6 +13,9 @@ export default {
       console.error(err);
     }
   },
+  getShuffledSongs: function () {
+    return axios.get("/api/shuffledSongs")
+  },
   login: function (user, pw) {
     return axios.post("/login");
   }

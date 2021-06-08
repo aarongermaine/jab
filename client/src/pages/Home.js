@@ -15,6 +15,7 @@ import API from "../utils/API"
 let val = 0
 class Home extends React.Component {
   constructor(props) {
+    document.body.classList.add("thing")
     super(props)
     this.state = { songsGotten: val }
     this.getSongsOnce().then((data) => {
@@ -25,17 +26,14 @@ class Home extends React.Component {
         this.state = { songsGotten: 1, songs: data }
       }
       // console.log(API.getSongs())
-      console.log("songs", this.state.songs)
-      console.log("total songs data", this.state)
+      // console.log("songs", this.state.songs)
+      // console.log("total songs data", this.state)
       document.body.classList.remove("thing")
+      console.log("cur state", this.state.songs.data)
     })
-    // while (!this.state.songs) { }
-    console.log("cur state", this.state)
+
   }
 
-  setSongState(res) {
-    this.state.songs = res
-  }
   async getSongsOnce() {
     if (!this.state.songsGotten) {
       return this.tryGetSongs()
@@ -44,16 +42,12 @@ class Home extends React.Component {
     }
   }
 
-  tryGetSongs = () => API.getSongs()
+  tryGetSongs = () => API.getShuffledSongs()
 
   render() {
 
     return (
       < Container fluid >
-        {/* <Row>
-          <Col size="md-3"></Col>
-          <Col size="md-8"><Header /></Col>
-        </Row> */}
         <Row>
           <Col size="md-4"></Col>
           <Col size="md-8">
@@ -63,13 +57,13 @@ class Home extends React.Component {
         <Row>
           <Col size="md-4"></Col>
           <Col size="md-4">
-            <Arrow left={true} />
-            <RatingButton rating={1} />
-            <RatingButton rating={2} />
-            <RatingButton rating={3} />
-            <RatingButton rating={4} />
-            <RatingButton rating={5} />
-            <Arrow left={false} />
+            <Arrow left={true} state={this.state} />
+            <RatingButton rating={1} state={this.state} />
+            <RatingButton rating={2} state={this.state} />
+            <RatingButton rating={3} state={this.state} />
+            <RatingButton rating={4} state={this.state} />
+            <RatingButton rating={5} state={this.state} />
+            <Arrow left={false} state={this.state} />
           </Col>
         </Row>
       </Container >
