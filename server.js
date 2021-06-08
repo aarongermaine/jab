@@ -11,8 +11,15 @@ const createError = require("http-errors");
 const PORT = 3001;
 const app = express();
 
+
 const mongoose = require("mongoose");
 const myRoutes = require("./routes/index.js");
+
+
+
+
+app.use(myRoutes)
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,6 +28,7 @@ app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
 
 app.use(
   session({
@@ -37,6 +45,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(myRoutes);
+
+
+
+app.use(cookieParser());
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
+);
+
+// require('./routes/api/song.js')(app);
+
+// Send every request to the React app
+// Define any API routes before this runs
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 
 app.listen(PORT, () => console.log(`🌎 ==> API server now on port ${PORT}!`));
 

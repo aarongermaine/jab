@@ -1,5 +1,10 @@
 const passport = require("passport");
 const db = require("../models");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const jwtDecode = require("jwt-decode");
+// const { models } = require("../db/models");
+
 
 module.exports = {
   userCreate: (req, res) => {

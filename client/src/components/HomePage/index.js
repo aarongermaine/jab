@@ -4,29 +4,7 @@ import Container from "react-bootstrap/Container";
 import API from "../../utils/API.js";
 import { Link } from "react-router-dom";
 
-// utils global state to add rating - import { useStoreContext } from "";
-// import { RATE_POST } from "../../utils/?";
-// import API from "../../utils/API";
-
 function SongList() {
-  /* const getSongs = () => {
-    dispatch({ type: LOADING });
-    API.getPosts()
-      .then((results) => {
-        dispatch({
-          type: UPDATE_SONGS,
-          songs: results.data,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getSongs();
-  }, []);
-
-  */
-  console.log(API.getSongs());
   return (
     <div className="App">
       <Container className="App-intro">

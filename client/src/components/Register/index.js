@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import submitDataAPI from "../../utils/API";
@@ -8,6 +9,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import "./style.css";
+
+import logo from "./logo1.png";
+
 
 function Register() {
   const [email, setEmail] = useState("");
