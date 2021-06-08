@@ -1,36 +1,63 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
-// Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
-const SALT_WORK_FACTOR = 10;
+const Schema = mongoose.Schema;
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
+const SALT = process.env.SALT || "secret";
 
-const userSchema = new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true },
-    email: { type: String, required: true }
-})
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      require: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      require: true,
+    },
+    firstname: {
+      type: String,
+      require: true,
+    },
+    lastname: {
+      type: String,
+      require: true,
+    },
+  },
+  {
+    versionKey: false,
+  }
+);
 
-userSchema.pre('save', function (next) {
+userSchema.pre(
+  "save",
+  function (next) {
     var user = this;
+    if (!user.isModified("password")) {
+      return next();
+    }
+    bcrypt
+      .hash(user.password, SALT)
+      .then((hashedPassword) => {
+        user.password = hashedPassword;
+        next();
+      })
+      .catch(err);
+  },
+  function (err) {
+    next(err);
+  }
+);
 
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
+userSchema.methods = {
+  checkPassword: function (inputPassword) {
+    return bcrypt.compareSync(inputPassword, this.password);
+  },
+  hashPassword: (plainTextPassword) => {
+    return bcrypt.hashSync(plainTextPassword, 10);
+  },
+};
 
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-        if (err) return next(err);
-
-        // hash the password using our new salt
-        bcrypt.hash(user.password, salt, function (err, hash) {
-            if (err) return next(err);
-            // override the cleartext password with the hashed one
-            user.password = hash;
-            next();
-        });
-    });
-});
-
-
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;

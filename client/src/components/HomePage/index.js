@@ -1,5 +1,7 @@
 import React from "react";
-import logo from "../HomePage/logo1.png";
+// import utils from "../../utils/API.js"
+import Container from "react-bootstrap/Container";
+import API from "../../utils/API.js";
 import { Link } from "react-router-dom";
 
 // utils global state to add rating - import { useStoreContext } from "";
@@ -24,23 +26,19 @@ function SongList() {
   }, []);
 
   */
-
+  console.log(API.getSongs());
   return (
     <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2></h2>
-      </div>
-      <p className="App-intro">
+      <Container className="App-intro">
         <iframe
           src="https://open.spotify.com/embed/track/2IRZnDFmlqMuOrYOLnZZyc"
-          width="300"
+          width="800"
           height="400"
-          frameborder="10"
-          allowtransparency="true"
+          frameBorder="10"
+          allowTransparency="true"
           allow="encrypted-media"
         ></iframe>
-      </p>
+      </Container>
     </div>
   );
 }

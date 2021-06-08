@@ -1,37 +1,53 @@
-html {
-
-  
-background: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(39, 39, 39) 100%);
-  
+body {
+  background: linear-gradient(
+    90deg,
+    rgb(17, 17, 17) 0%,
+    rgb(37, 37, 37) 35%,
+    rgb(39, 39, 39) 100%
+  );
 }
 
 .App {
   text-align: center;
-  background-color: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(39, 39, 39) 100%);;
+  background-color: linear-gradient(
+    90deg,
+    rgb(17, 17, 17) 0%,
+    rgb(37, 37, 37) 35%,
+    rgb(39, 39, 39) 100%
+  );
 }
 
 .App-logo {
-  animation: App-logo-spin 5.0s
-  ease-out
-  
-  alternate
-  infinite
-  none
-  running;
-  
+  animation: App-logo-spin 5s ease-out alternate infinite none running;
+
   height: 100px;
 }
 
 .App-header {
-  background-color: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(39, 39, 39) 100%);;
+  background-color: linear-gradient(
+    90deg,
+    rgb(17, 17, 17) 0%,
+    rgb(37, 37, 37) 35%,
+    rgb(39, 39, 39) 100%
+  );
   height: 130px;
   padding: 10px;
-  color: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(39, 39, 39) 100%);;
+  color: linear-gradient(
+    90deg,
+    rgb(17, 17, 17) 0%,
+    rgb(37, 37, 37) 35%,
+    rgb(39, 39, 39) 100%
+  );
 }
 
 .App-intro {
   font-size: large;
-  background-color: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(39, 39, 39) 100%);;
+  background-color: linear-gradient(
+    90deg,
+    rgb(17, 17, 17) 0%,
+    rgb(37, 37, 37) 35%,
+    rgb(39, 39, 39) 100%
+  );
 }
 
 /* The sidebar menu */
@@ -48,9 +64,7 @@ background: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(
 }
 
 #root {
-
   color: #222;
-
 }
 
 /* The navigation menu links */
@@ -76,24 +90,19 @@ background: linear-gradient(90deg, rgb(17, 17, 17) 0%, rgb(37, 37, 37) 35%, rgb(
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
- 
-
-
-
-
-@keyframes App-logo-spin {  
-   
-
-  
-  from {transform: scale3d(1.2, 1.0, 0.1)};
-  to {transform: scale3d(1.1, 1.0, 0.2)};
-  
-
- 
-
+@keyframes App-logo-spin {
+  from {
+    transform: scale3d(1.2, 1, 0.1);
+  }
+  to {
+    transform: scale3d(1.1, 1, 0.2);
+  }
 }
-

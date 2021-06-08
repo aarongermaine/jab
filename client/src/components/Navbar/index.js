@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function SideNav() {
   return (
-    <nav class="sidenav">
+    <nav className="sidenav">
       <Link className="navbar-brand" to="/">
         Home
       </Link>
       <div>
         <ul className="navbar-nav">
-          <li class="animate__zoomIn">
+          <li className="animate__zoomIn">
             <Link to="/login">Login</Link>
           </li>
         </ul>
@@ -18,4 +18,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default SideNav;
