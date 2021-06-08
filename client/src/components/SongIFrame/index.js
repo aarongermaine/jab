@@ -7,7 +7,7 @@ function SongIFrame(props) {
       src={song}
       width="300"
       height="400"
-      frameborder="10"
+      frameBorder="10"
       allowtransparency="true"
       allow="encrypted-media"
     ></iframe>
