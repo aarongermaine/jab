@@ -22,6 +22,11 @@ router.get("/allSongs", async function (req, res) {
     res.json(docArray);
 });
 
+router.get("/song/:id", async function (req, res) {
+    let something = await Songs.findOne({ _id: req.params.id });
+    res.json(something.toObject());
+});
+
 router.get("/allSongsDesc", async function (req, res) {
     let something = await Songs.find();
     var docArray = something.map(function (model) {
@@ -41,9 +46,16 @@ router.get("/allRatings", async function (req, res) {
 //pass songid and account id.
 //or song spotify and account name?
 //will only find first
-router.get("/rating", async function (req, res) {
+//Can't send body with get with axios, so using post.
+router.post("/rating", async function (req, res) {
+    // console.log(req)
+
+    console.log(req.body)
+    // res.json(req.body)
+
     let spotifySongId = req.body.id;
     let raterUsername = req.body.username;
+
     let userId;
     let songId1;
     console.log("got rating request");
@@ -192,7 +204,6 @@ function scuffedFisherYates(array) {
     }
     //do last iteration outside of loop, cause effeciency.
     tempVal = Object.assign({}, array[0]);
-    //[3,9,7,5,4,2,1,0]
     returnArr.unshift(tempVal);
     //return the arr.
     return returnArr;
