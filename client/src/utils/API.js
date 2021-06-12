@@ -1,11 +1,11 @@
 import axios from "axios";
 
-
 export default {
   getSong: function (id) {
     return axios.get("/api/song/" + id);
   },
   getSongs: function () {
+
     // try { 
     // let returnVal = 
     return axios.get("/api/allSongs")
@@ -13,10 +13,19 @@ export default {
     // } catch (err) {
     //   console.error(err);
     // }
+
   },
   getShuffledSongs: function () {
-    return axios.get("/api/shuffledSongs")
+    return axios.get("/api/shuffledSongs");
   },
+  res: function () {
+    return axios.get("/api/login", {
+      method: "POST",
+      body: JSON.stringify,
+      headers: { "Content-Type": "application/json" },
+    });
+  },
+
   //this won't work
   login: function (user, pw) {
     return axios.post("/login");
@@ -54,6 +63,5 @@ export default {
   //     foo: 'bar', // This is the body part
   //   }
   // });
+
 };
-
-

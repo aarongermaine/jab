@@ -7,25 +7,23 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./style.css";
 
-
 import res from "../../utils/API";
-import "./style.css";
 
 function Login() {
   return (
     <Container style={{ width: "75%" }}>
       <Form className="loginForm">
         <Form.Group as={Row}>
-          <Form.Label column sm={2} htmlFor="emailLogin">
-            Email
+          <Form.Label column sm={2} htmlFor="usernameLogin">
+            Username
           </Form.Label>
           <Col sm={10}>
             <Form.Control
-              type="email"
+              type="username"
               className="form-control w-75"
-              id="emailLogin"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
+              id="usernameLogin"
+              aria-describedby="usernameHelp"
+              placeholder="Enter username"
             />
           </Col>
         </Form.Group>

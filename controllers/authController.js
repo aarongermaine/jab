@@ -5,12 +5,10 @@ const bcrypt = require("bcryptjs");
 const jwtDecode = require("jwt-decode");
 // const { models } = require("../db/models");
 
-
 module.exports = {
   userCreate: (req, res) => {
-    db.User.create(req.body)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+    db.User.create(req.body).then((dbModel) => res.json(dbModel));
+    console.log("created").catch((err) => res.status(422).json(err));
   },
   login: (req, res) => {
     console.log("routes/user.js, login, req.body: ");

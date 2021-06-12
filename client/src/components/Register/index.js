@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import submitDataAPI from "../../utils/API";
 import Button from "react-bootstrap/Button";
@@ -10,39 +9,42 @@ import Row from "react-bootstrap/Row";
 
 import "./style.css";
 
-import logo from "./logo1.png";
-
-
 function Register() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheckVal, setPassCheckVal] = useState("");
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
-  const [passwordCheck, setPassCheck] = useState(false);
+  //const [passwordCheck, setPassCheck] = useState(false);
 
-  const hangleSubmit = (event, firstName, lastName, email, password) => {
+  const handleSubmit = (event, firstName, lastName, username, password) => {
     event.preventDefault();
-    if ([firstName, lastName, email, password].some((val) => val === "")) {
+    if ([firstName, lastName, username, password].some((val) => val === "")) {
       return alert("Please fill all fields");
     } else {
+      submitDataAPI.postUserData.toString({
+        firstName,
+        lastName,
+        username,
+        password,
+      });
       //  send values as object i.e submitDataAPI.postUserData({
-      //           firstName, lastName, email, password
+      //           firstName, lastName, username, password
       //       })
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
-    if (name === "email") {
-      setEmail(value);
+    if (name === "username") {
+      setUsername(value);
     } else if (name === "password") {
       setPassword(value);
     } else if (name === "passwordCheckVal") {
       setPassCheckVal(value);
     } else if (name === "firstName") {
       setFirst(value);
-    } else if (name === "lastname") {
+    } else if (name === "lastName") {
       setLast(value);
     }
   };
@@ -83,18 +85,18 @@ function Register() {
         </Form.Group>
         <br />
         <Form.Group as={Row}>
-          <Form.Label column sm={2} htmlFor="emailLogin">
+          <Form.Label column sm={2} htmlFor="usernameLogin">
             {" "}
           </Form.Label>
           <Col sm={10}>
             <Form.Control
-              type="email"
+              type="username"
               className="form-control w-75"
-              id="emailLogin"
-              name="email"
-              value={email}
-              aria-describedby="emailHelp"
-              placeholder="Email"
+              id="usernameLogin"
+              name="username"
+              value={username}
+              aria-describedby="usernameHelp"
+              placeholder="Username"
               onChange={(event) => handleChange(event)}
             />
           </Col>
@@ -141,7 +143,7 @@ function Register() {
               <Col>
                 <Button
                   onClick={(event) =>
-                    hangleSubmit(event, firstName, lastName, email, password)
+                    handleSubmit(event, firstName, lastName, username, password)
                   }
                   disabled={password === passwordCheckVal ? false : true}
                   className="w-50 btn-info"
