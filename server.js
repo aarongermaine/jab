@@ -1,25 +1,43 @@
 require("dotenv").config();
 const express = require("express");
+
+// const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
+// const logger = require("morgan");
+
 const cookieParser = require("cookie-parser");
 //const bodyParser = require("body-parser");
 const logger = require("morgan");
+
 const session = require("express-session");
 const path = require("path");
 const MongoStore = require("connect-mongo");
-const passport = require("./scripts/config");
-const createError = require("http-errors");
+// const passport = require("./scripts/config");
+// const createError = require("http-errors");
 const PORT = 3001;
 const app = express();
+
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// app.use(express.bodyParser());
 
 const mongoose = require("mongoose");
 const myRoutes = require("./routes/index.js");
 
 app.use(myRoutes);
 
+
+
+
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
-app.use(logger("dev"));
+
+
+// app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
@@ -35,15 +53,10 @@ app.use(
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-app.use(myRoutes);
 
-app.use(cookieParser());
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
