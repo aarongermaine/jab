@@ -9,6 +9,7 @@ function Arrow(props) {
   function myFunction(e) {
     props.changeSong()
     props.generateStars(props.left)
+
   }
 
   return (

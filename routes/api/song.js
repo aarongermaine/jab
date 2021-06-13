@@ -50,7 +50,7 @@ router.get("/allRatings", async function (req, res) {
 router.post("/rating", async function (req, res) {
     // console.log(req)
 
-    console.log(req.body)
+    // console.log(req.body)
     // res.json(req.body)
 
     let spotifySongId = req.body.id;
@@ -58,7 +58,7 @@ router.post("/rating", async function (req, res) {
 
     let userId;
     let songId1;
-    console.log("got rating request");
+    // console.log("got request for rating");
     let user = await User.findOne({ username: raterUsername });
     if (user) {
         userId = user.id;
@@ -66,7 +66,7 @@ router.post("/rating", async function (req, res) {
         res.status(404).send({ error: "user not found" });
     }
     let song = await Songs.findOne({ spotifyID: spotifySongId });
-    console.log(song);
+    // console.log(song);
 
     if (song) {
         songId1 = song.id;
@@ -87,7 +87,7 @@ router.post("/rateSong", async function (req, res) {
     let raterUsername = req.body.username;
     let userId;
     let songId1;
-    console.log("got rating request");
+    // console.log("got request to rate song");
     let user = await User.findOne({ username: raterUsername });
     if (user) {
         userId = user.id;
@@ -95,13 +95,13 @@ router.post("/rateSong", async function (req, res) {
         res.status(404).send({ error: "user not found" });
     }
     let song = await Songs.findOne({ spotifyID: spotifySongId });
-    console.log(song);
+    //console.log(song);
     if (song) {
         songId1 = song.id;
     } else {
         res.status(404).send({ error: "song not found" });
     }
-    console.log(typeof songId1, typeof userId);
+    //console.log(typeof songId1, typeof userId);
     let existingRating = await Ratings.findOne({
         songId: songId1,
         accountId: userId,
@@ -115,11 +115,14 @@ router.post("/rateSong", async function (req, res) {
             songRating - existingRating.rating,
             false
         );
+        // console.log("newrating, existing", newRating)
         let response1 = await Ratings.updateOne(
             { _id: existingRating.id },
             { rating: songRating }
         );
+        // console.log("newrating update, existing", response1)
         let ressy = await Songs.updateOne({ _id: songId1 }, { rating: newRating });
+        // console.log("song rating update", ressy)
         res.json(ressy);
     } else {
         //add rating
@@ -128,11 +131,12 @@ router.post("/rateSong", async function (req, res) {
             accountId: userId,
             rating: songRating,
         });
+        // console.log("newrating, new", newRating)
         newRating.save(function (err, result) {
             if (err) {
                 console.log(err);
             } else {
-                console.log(result);
+                console.log("newRating creation", result);
             }
         });
         song.numOfRatings = 1 + song.numOfRatings;
@@ -148,7 +152,7 @@ router.post("/rateSong", async function (req, res) {
             { _id: songId1 },
             { rating: song.rating, numOfRatings: song.numOfRatings }
         );
-
+        // console.log("song rating update, new rating", ressy)
         res.json(ressy);
     }
 

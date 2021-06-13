@@ -11,11 +11,11 @@ class Home extends React.Component {
     document.body.classList.add("thing")
     super(props)
     this.state = ({ user: "root", songsGotten: val })
-    console.log("state", this.state)
+    // console.log("state", this.state)
     this.getSongsOnce().then((data) => {
       let songsArray = []
       let songs = data.data
-      console.log(songs)
+      // console.log(songs)
       //Need to retranslate the API call into a better array.
       //This is how we do it.
       //The other way just doesn't work
@@ -34,10 +34,10 @@ class Home extends React.Component {
         this.setState({ songsGotten: 1, songs: songsArray, index: 0 })
       }
 
-      this.getRating().then((data) => { console.log(data) })
+      // this.getRating().then((data) => { console.log(data) })
       this.generateStars(null)
       this.setState({ complete: 1 })
-      console.log("state", this.state)
+      // console.log("state", this.state)
       document.body.classList.remove("thing")
     })
   }
@@ -58,26 +58,33 @@ class Home extends React.Component {
   //Look into length bs
   //Please future brandon, don't let me down.
   goUpOneSong = () => {
+
     this.setState((state) => {
+      // console.log(state.index)
       if (state.index === state.songs.length - 1) {
         return { index: 0 }
       } else {
         return { index: state.index + 1 }
       }
     })
+    // console.log(this.state.index)
   }
 
   goDownOneSong = () => {
+
     this.setState((state) => {
+      // console.log(state.index)
       if (state.index === 0) {
         return { index: state.songs.length - 1 }
       } else {
         return { index: state.index - 1 }
       }
     })
+    // console.log(this.state.index)
   }
 
   sendRating = (rating) => {
+    console.log(this.state.index)
     let symbolArr = [];
     // API.getSong(data.data.songId).then((data) => console.log("songData", data))
     for (let index = 0; index < 5; index++) {
@@ -97,9 +104,15 @@ class Home extends React.Component {
   //Okay ascii only has black and white stars.
   //So screw it.
   getRating = (optionalIndexOverride) => {
-    if (optionalIndexOverride) {
+    if (optionalIndexOverride != null) {
+
+      // console.log(this.state.songs[optionalIndexOverride].spotifyID)
+      // console.log(optionalIndexOverride)
       return API.getRating(this.state.user, this.state.songs[optionalIndexOverride].spotifyID)
+
     } else {
+      // console.log(this.state.songs[this.state.index].spotifyID)
+
       return API.getRating(this.state.user, this.state.songs[this.state.index].spotifyID)
     }
   }
@@ -119,12 +132,14 @@ class Home extends React.Component {
         realIndex = this.state.index + 1
       }
     }
+
     let symbolArr = []
     this.getRating(realIndex).then((data) => {
-      console.log("rating", data.data)
+      // console.log("realIndex in generateStars", realIndex)
+      // console.log("rating", data.data)
       if (data.data != null) {
-        console.log(Math.floor(data.data.rating))
-        API.getSong(data.data.songId).then((data) => console.log("songData", data))
+        // console.log(Math.floor(data.data.rating))
+        // API.getSong(data.data.songId).then((data) => console.log("songData", data))
         for (let index = 0; index < 5; index++) {
           let actual = index + 1
           if (actual <= Math.floor(data.data.rating)) {
