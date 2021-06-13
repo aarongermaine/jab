@@ -1,26 +1,14 @@
-require("dotenv").config();
 const express = require("express");
-
-// const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-
-// const logger = require("morgan");
-
-const cookieParser = require("cookie-parser");
-//const bodyParser = require("body-parser");
-const logger = require("morgan");
-
 const session = require("express-session");
 const path = require("path");
 const MongoStore = require("connect-mongo");
-// const passport = require("./scripts/config");
-// const createError = require("http-errors");
+require("dotenv").config();
+
 const PORT = 3001;
 const app = express();
 
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//app.use(express.urlencoded({ extended: true }));
+//app.use(express.json());
 
 // app.use(express.bodyParser());
 
@@ -29,13 +17,12 @@ const myRoutes = require("./routes/index.js");
 
 app.use(myRoutes);
 
-
-
-
+// req.isAuthenticated is provided from the auth router
+app.get("/", (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+});
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
-
-
 
 // app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
@@ -56,8 +43,6 @@ app.use(
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-
-
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
 );
@@ -71,12 +56,3 @@ app.get("*", function (req, res) {
 });
 
 app.listen(PORT, () => console.log(`🌎 ==> API server now on port ${PORT}!`));
-
-process.on("exit", () => {
-  console.log("exiting…");
-  return process.exit();
-});
-
-process.once("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
-
-process.on("SIGINT", () => process.kill(process.pid, "SIGINT"));

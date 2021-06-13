@@ -3,11 +3,9 @@ const router = require("express").Router();
 
 // API Routes
 
-
 // router.use("/api", require("./api/song"));
-// router.use("/user", require("./api/user"));
-router.use(require("./api/index.js"))
-
+// router.use("/user", require("./api/userRoute"));
+router.use(require("./api/index.js"));
 
 // If no API routes are hit, send the React app
 router.use(function (req, res) {

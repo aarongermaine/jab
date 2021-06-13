@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthenticationButton from "../AuthButton/authenticationButton";
 
 function SideNav() {
   return (
@@ -10,7 +11,7 @@ function SideNav() {
       <div>
         <ul className="navbar-nav">
           <li className="animate__zoomIn">
-            <Link to="/login">Login</Link>
+            <AuthenticationButton />
           </li>
         </ul>
       </div>

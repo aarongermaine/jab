@@ -5,42 +5,32 @@ export default {
     return axios.get("/api/song/" + id);
   },
   getSongs: function () {
-
-    // try { 
-    // let returnVal = 
-    return axios.get("/api/allSongs")
+    // try {
+    // let returnVal =
+    return axios.get("/api/allSongs");
     //   return returnVal
     // } catch (err) {
     //   console.error(err);
     // }
-
   },
   getShuffledSongs: function () {
     return axios.get("/api/shuffledSongs");
   },
-  res: function () {
-    return axios.get("/api/login", {
-      method: "POST",
-      body: JSON.stringify,
-      headers: { "Content-Type": "application/json" },
-    });
-  },
 
-  //this won't work
-  login: function (user, pw) {
-    return axios.post("/login");
-  },
   getRating: function (user, songId) {
-    let data = { username: user, id: songId }
-    return axios.post("/api/rating", { username: user, id: songId })
+    let data = { username: user, id: songId };
+    return axios.post("/api/rating", { username: user, id: songId });
   },
   sendRating: function (user, songId, rating) {
     //    let spotifySongId = req.body.id;
     // let songRating = req.body.rating;
     // let raterUsername = req.body.username;
-    return axios.post("/api/rateSong", { username: user, id: songId, rating: rating })
-  }
-
+    return axios.post("/api/rateSong", {
+      username: user,
+      id: songId,
+      rating: rating,
+    });
+  },
 
   // getRating: function (user, songId) {
   //   console.log(axios("api/rating", {
@@ -53,15 +43,13 @@ export default {
   //   }));
   // }
 
-
   //Shit from stackOverflow.
   // axios({
   //   method: 'post',
   //   url: baseUrl + 'applications/' + appName + '/dataexport/plantypes' + plan,
-  //   headers: {}, 
+  //   headers: {},
   //   data: {
   //     foo: 'bar', // This is the body part
   //   }
   // });
-
 };
