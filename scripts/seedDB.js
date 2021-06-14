@@ -5,8 +5,7 @@ const db = require("../models");
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/songRatingList"
+  "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority"
 );
 
 //spotify:track:2IRZnDFmlqMuOrYOLnZZyc

@@ -29,12 +29,12 @@ class Home extends React.Component {
       for (const key in songs) {
         const element1 = songs[key];
         if (element1["0"]) {
-          songsArray.push(element1["0"])
+          songsArray.push(element1["0"]);
         } else {
-          songsArray.push(element1)
+          songsArray.push(element1);
         }
       }
-      console.log(songsArray)
+      console.log(songsArray);
 
       // if (songsArray) {
       //   val = 1
@@ -42,22 +42,22 @@ class Home extends React.Component {
       // }
 
       this.getRating().then((data) => { console.log(data) })
-      this.generateStars(null)
-      this.setState({ complete: 1 })
-      console.log("state", this.state)
-      document.body.classList.remove("thing")
+      this.generateStars(null);
+      this.setState({ complete: 1 });
+      console.log("state", this.state);
+      document.body.classList.remove("thing");
     })
   }
 
   async getSongsOnce() {
     if (!this.state.songsGotten) {
-      return this.tryGetSongs()
+      return this.tryGetSongs();
     } else {
       return 0;
     }
   }
 
-  tryGetSongs = () => API.getShuffledSongs()
+  tryGetSongs = () => API.getShuffledSongs();
 
   //Overshoot it to compensate?
   //Just tell it to fix itself?
@@ -65,7 +65,6 @@ class Home extends React.Component {
   //Look into length bs
   //Please future brandon, don't let me down.
   goUpOneSong = () => {
-
     this.setState((state) => {
       // console.log(state.index)
       if (state.index === state.songs.length - 1) {
@@ -78,7 +77,6 @@ class Home extends React.Component {
   }
 
   goDownOneSong = () => {
-
     this.setState((state) => {
       // console.log(state.index)
       if (state.index === 0) {
