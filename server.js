@@ -40,7 +40,7 @@ app.use(
   session({
     secret: "secret",
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost/songRatingList",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/songRatingList",
     }),
     resave: false,
     saveUninitialized: true,
