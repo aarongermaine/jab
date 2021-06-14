@@ -18,6 +18,7 @@ router.post("/user", async function (req, res) {
   console.log(something);
   res.json(something);
 });
+
 router.post("/login", async function (req, res) {
   console.log("got request for", req.body.username);
   console.log("pw", req.body.password);
@@ -29,20 +30,20 @@ router.post("/login", async function (req, res) {
       } else {
         return false;
       }
-    })
-    .then((data) => {
+    }).then((data) => {
       console.log("something", data);
       res.json(data);
-    });
+    })
+  res.status(404)
+
 });
 
 //create
 router.put("/user", async function (req, res) {
-  await User.create({
-    username: req.body.username,
-    password: req.body.password,
-  });
+  await User.create({ username: req.body.username, password: req.body.password })
   res.json("Successfully created new user!");
-});
+})
+
+
 
 module.exports = router;

@@ -18,6 +18,7 @@ export default {
       id: songId,
       rating: rating,
     });
+
   },
   getUser: function (user) {
     return axios.post("/users/user", { username: user });

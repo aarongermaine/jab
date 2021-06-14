@@ -15,6 +15,7 @@ const path = require("path");
 const MongoStore = require("connect-mongo");
 // const passport = require("./scripts/config");
 // const createError = require("http-errors");
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -43,7 +44,7 @@ app.use(
   session({
     secret: "secret",
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/songRatingList",
+      mongoUrl: process.env.MONGODB_URI || "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority",
     }),
     resave: false,
     saveUninitialized: true,
@@ -54,7 +55,7 @@ app.use(
 // app.use(passport.session());
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
+  process.env.MONGODB_URI || "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority"
 );
 
 // require('./routes/api/song.js')(app);
