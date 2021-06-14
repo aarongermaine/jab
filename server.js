@@ -15,9 +15,8 @@ const path = require("path");
 const MongoStore = require("connect-mongo");
 // const passport = require("./scripts/config");
 // const createError = require("http-errors");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,13 +28,8 @@ const myRoutes = require("./routes/index.js");
 
 app.use(myRoutes);
 
-
-
-
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
-
-
 
 // app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
@@ -55,8 +49,6 @@ app.use(
 
 // app.use(passport.initialize());
 // app.use(passport.session());
-
-
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
