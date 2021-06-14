@@ -69,6 +69,6 @@ process.on("exit", () => {
   return process.exit();
 });
 
-process.once("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
+// process.once("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
 
-process.on("SIGINT", () => process.kill(process.pid, "SIGINT"));
+// process.on("SIGINT", () => process.kill(process.pid, "SIGINT"));
