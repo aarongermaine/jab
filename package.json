@@ -9,7 +9,7 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "seed": "node scripts/seedDB.mjs",
+    "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -42,7 +42,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mongodb": "^3.6.8",
-    "mongoose": "^5.12.10",
+    "mongoose": "^5.12.13",
     "mongoosejs-cli": "^1.0.7",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",

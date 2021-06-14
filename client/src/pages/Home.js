@@ -14,11 +14,19 @@ class Home extends React.Component {
     //   user: "root"
     //   // , songsGotten: val
     // })
+<<<<<<< HEAD
     let user = localStorage.getItem("user");
     this.state = {
       user: user,
     };
     // console.log("state", this.state)
+=======
+    let user = localStorage.getItem("user")
+    this.state = ({
+      user: user
+    })
+    console.log("state", this.state)
+>>>>>>> 826cc5ec791edd7b72b0bb87020eeae99a38a6b5
     this.getSongsOnce().then((data) => {
       let songsArray = [];
       let songs = data.data;
@@ -41,12 +49,21 @@ class Home extends React.Component {
       this.setState({ songsGotten: 1, songs: songsArray, index: 0 });
       // }
 
+<<<<<<< HEAD
       // this.getRating().then((data) => { console.log(data) })
       this.generateStars(null);
       this.setState({ complete: 1 });
       // console.log("state", this.state)
       document.body.classList.remove("thing");
     });
+=======
+      this.getRating().then((data) => { console.log(data) })
+      this.generateStars(null)
+      this.setState({ complete: 1 })
+      console.log("state", this.state)
+      document.body.classList.remove("thing")
+    })
+>>>>>>> 826cc5ec791edd7b72b0bb87020eeae99a38a6b5
   }
 
   async getSongsOnce() {
@@ -115,11 +132,17 @@ class Home extends React.Component {
   getRating = (optionalIndexOverride) => {
     if (optionalIndexOverride != null) {
       // console.log(this.state.songs[optionalIndexOverride].spotifyID)
+<<<<<<< HEAD
       // console.log(optionalIndexOverride)
       return API.getRating(
         this.state.user,
         this.state.songs[optionalIndexOverride].spotifyID
       );
+=======
+      console.log(optionalIndexOverride)
+      return API.getRating(this.state.user, this.state.songs[optionalIndexOverride].spotifyID)
+
+>>>>>>> 826cc5ec791edd7b72b0bb87020eeae99a38a6b5
     } else {
       // console.log(this.state.songs[this.state.index].spotifyID)
 
@@ -146,6 +169,7 @@ class Home extends React.Component {
       }
     }
 
+<<<<<<< HEAD
     let symbolArr = [];
     this.getRating(realIndex)
       .then((data) => {
@@ -171,6 +195,33 @@ class Home extends React.Component {
 
   render() {
     if (this.state.index !== undefined && this.state.filledStar !== undefined) {
+=======
+    let symbolArr = []
+    this.getRating(realIndex).then((data) => {
+      console.log("realIndex in generateStars", realIndex)
+      console.log("rating", data.data)
+      if (data.data != null) {
+        // console.log(Math.floor(data.data.rating))
+        // API.getSong(data.data.songId).then((data) => console.log("songData", data))
+        for (let index = 0; index < 5; index++) {
+          let actual = index + 1
+          if (actual <= Math.floor(data.data.rating)) {
+            symbolArr.push(true)
+          } else {
+            symbolArr.push(false)
+          }
+        }
+      }
+
+    }).then(() => {
+      this.setState({ filledStar: symbolArr })
+
+    })
+  }
+
+  render() {
+    if (this.state.index != undefined && this.state.filledStar != undefined) {
+>>>>>>> 826cc5ec791edd7b72b0bb87020eeae99a38a6b5
       return (
         <Container fluid>
           <Row>
@@ -184,6 +235,7 @@ class Home extends React.Component {
           <Row>
             <Col size="md-4"></Col>
             <Col size="md-4">
+<<<<<<< HEAD
               <Arrow
                 left={true}
                 state={this.state}
@@ -232,6 +284,15 @@ class Home extends React.Component {
                 changeSong={this.goUpOneSong}
                 generateStars={this.generateStars}
               />
+=======
+              <Arrow left={true} state={this.state} changeSong={this.goDownOneSong} generateStars={this.generateStars} />
+              <RatingButton rating={1} state={this.state} filled={this.state.filledStar[0]} sendRating={this.sendRating} generateStars={this.generateStars} />
+              <RatingButton rating={2} state={this.state} filled={this.state.filledStar[1]} sendRating={this.sendRating} generateStars={this.generateStars} />
+              <RatingButton rating={3} state={this.state} filled={this.state.filledStar[2]} sendRating={this.sendRating} generateStars={this.generateStars} />
+              <RatingButton rating={4} state={this.state} filled={this.state.filledStar[3]} sendRating={this.sendRating} generateStars={this.generateStars} />
+              <RatingButton rating={5} state={this.state} filled={this.state.filledStar[4]} sendRating={this.sendRating} generateStars={this.generateStars} />
+              <Arrow left={false} state={this.state} changeSong={this.goUpOneSong} generateStars={this.generateStars} />
+>>>>>>> 826cc5ec791edd7b72b0bb87020eeae99a38a6b5
             </Col>
           </Row>
         </Container>

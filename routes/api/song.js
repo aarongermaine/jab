@@ -48,10 +48,8 @@ router.get("/allRatings", async function (req, res) {
 //will only find first
 //Can't send body with get with axios, so using post.
 router.post("/rating", async function (req, res) {
-
     let spotifySongId = req.body.id;
     let raterUsername = req.body.username;
-
     let userId;
     let songId1;
     // console.log("got request for rating");
@@ -63,7 +61,6 @@ router.post("/rating", async function (req, res) {
     }
     let song = await Songs.findOne({ spotifyID: spotifySongId });
     // console.log(song);
-
     if (song) {
         songId1 = song.id;
     } else {
