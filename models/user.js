@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
-const SALT = process.env.SALT || "secret";
+const SALT = process.env.SALT || 10;
 
 const userSchema = new Schema(
   {
@@ -12,14 +12,6 @@ const userSchema = new Schema(
       unique: true,
     },
     password: {
-      type: String,
-      require: true,
-    },
-    firstname: {
-      type: String,
-      require: true,
-    },
-    lastname: {
       type: String,
       require: true,
     },
@@ -42,7 +34,7 @@ userSchema.pre(
         user.password = hashedPassword;
         next();
       })
-      .catch(err);
+      .catch((err) => { throw err });
   },
   function (err) {
     next(err);
@@ -52,10 +44,7 @@ userSchema.pre(
 userSchema.methods = {
   checkPassword: function (inputPassword) {
     return bcrypt.compareSync(inputPassword, this.password);
-  },
-  hashPassword: (plainTextPassword) => {
-    return bcrypt.hashSync(plainTextPassword, 10);
-  },
+  }
 };
 
 const User = mongoose.model("User", userSchema);

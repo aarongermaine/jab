@@ -1,36 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import submitDataAPI from "../../utils/API";
+// import submitDataAPI from "../../utils/API";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import API from "../../utils/API"
 
 import "./style.css";
-
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheckVal, setPassCheckVal] = useState("");
-  const [firstName, setFirst] = useState("");
-  const [lastName, setLast] = useState("");
-  //const [passwordCheck, setPassCheck] = useState(false);
 
-  const handleSubmit = (event, firstName, lastName, username, password) => {
+
+  const handleSubmit = (event, username, password) => {
     event.preventDefault();
-    if ([firstName, lastName, username, password].some((val) => val === "")) {
+    if ([username, password].some((val) => val === "")) {
       return alert("Please fill all fields");
     } else {
-      submitDataAPI.postUserData.toString({
-        firstName,
-        lastName,
-        username,
-        password,
-      });
-      //  send values as object i.e submitDataAPI.postUserData({
-      //           firstName, lastName, username, password
-      //       })
+
+      API.createNewUser(username, password).then((data) => {
+        alert("successfully created new user!")
+        setUsername("")
+        setPassword("")
+        setPassCheckVal("")
+        localStorage.setItem('loggedIn', true)
+        localStorage.setItem('user', username)
+        window.location.replace("/");
+      })
+
     }
   };
 
@@ -42,48 +42,12 @@ function Register() {
       setPassword(value);
     } else if (name === "passwordCheckVal") {
       setPassCheckVal(value);
-    } else if (name === "firstName") {
-      setFirst(value);
-    } else if (name === "lastName") {
-      setLast(value);
     }
   };
 
   return (
     <Container style={{ width: "75%" }}>
       <Form className="registerForm">
-        <Form.Group as={Row}>
-          <Form.Label column sm={2} htmlFor="firstLogin"></Form.Label>
-          <Col sm={10}>
-            <Form.Control
-              type="text"
-              className="form-control w-75"
-              id="firstLogin"
-              name="firstName"
-              value={firstName}
-              aria-describedby="first name"
-              placeholder="First name"
-              onChange={(event) => handleChange(event)}
-            />
-          </Col>
-        </Form.Group>
-        <br />
-        <Form.Group as={Row}>
-          <Form.Label column sm={2} htmlFor="lastLogin"></Form.Label>
-          <Col sm={10}>
-            <Form.Control
-              type="text"
-              className="form-control w-75"
-              id="lastLogin"
-              name="lastName"
-              value={lastName}
-              aria-describedby="last name"
-              placeholder="Last name"
-              onChange={(event) => handleChange(event)}
-            />
-          </Col>
-        </Form.Group>
-        <br />
         <Form.Group as={Row}>
           <Form.Label column sm={2} htmlFor="usernameLogin">
             {" "}
@@ -143,7 +107,7 @@ function Register() {
               <Col>
                 <Button
                   onClick={(event) =>
-                    handleSubmit(event, firstName, lastName, username, password)
+                    handleSubmit(event, username, password)
                   }
                   disabled={password === passwordCheckVal ? false : true}
                   className="w-50 btn-info"

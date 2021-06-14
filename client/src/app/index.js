@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from 'react-router';
 import Home from "../pages/Home";
 import Login from "../components/Login";
 import SideNav from "../components/Navbar";
@@ -11,6 +12,8 @@ import Row from "react-bootstrap/Row";
 import logo from "./logo1.png";
 import "../styles/App.css";
 
+let loggedin = localStorage.getItem("loggedIn") ? true : false
+console.log(loggedin)
 function App() {
   return (
     <Router>
@@ -30,7 +33,10 @@ function App() {
               />
             </Navbar>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/">
+                {loggedin ? <Home /> : <Redirect to="/login" />}
+              </Route>
+              {/* <Route exact path="/" component={Home} /> */}
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
             </Switch>
