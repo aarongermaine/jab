@@ -41,7 +41,6 @@ class Home extends React.Component {
       this.setState({ songsGotten: 1, songs: songsArray, index: 0 });
       // }
 
-
       this.getRating().then((data) => {
         console.log(data);
       });
@@ -49,9 +48,8 @@ class Home extends React.Component {
       this.generateStars(null);
       this.setState({ complete: 1 });
       console.log("state", this.state);
-      document.body.classList.remove("thing"); s
+      document.body.classList.remove("thing");
     });
-
   }
 
   async getSongsOnce() {
