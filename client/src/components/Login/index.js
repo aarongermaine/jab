@@ -6,11 +6,9 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./style.css";
-import API from "../../utils/API"
-
+import API from "../../utils/API";
 
 function Login() {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,15 +18,15 @@ function Login() {
       return alert("Please fill all fields");
     } else {
       API.login(username, password).then((data) => {
-        console.log(data.data)
+        console.log(data.data);
         if (data.data === true) {
-          localStorage.setItem('loggedIn', true)
-          localStorage.setItem('user', username)
+          localStorage.setItem("loggedIn", true);
+          localStorage.setItem("user", username);
           window.location.replace("/");
         } else {
-          alert("password incorrect, try again")
+          alert("password incorrect, try again");
         }
-      })
+      });
     }
   };
 
@@ -38,8 +36,8 @@ function Login() {
       setUsername(value);
     } else if (name === "password") {
       setPassword(value);
-    };
-  }
+    }
+  };
 
   return (
     <Container style={{ width: "75%" }}>
@@ -82,17 +80,16 @@ function Login() {
           <Col sm={10}>
             <Row className="w-100 p-0">
               <Col>
-                <Button onClick={(event) =>
-                  handleSubmit(event, username, password)
-                } className="w-50 btn-info">
+                <Button
+                  onClick={(event) => handleSubmit(event, username, password)}
+                  className="w-50 btn-info"
+                >
                   Submit
                 </Button>
               </Col>
               <Col>
                 <Link to="/register">
-                  <Button className="w-50 btn-warning">
-                    Sign up
-                  </Button>
+                  <Button className="w-50 btn-warning">Sign up</Button>
                 </Link>
               </Col>
             </Row>

@@ -13,7 +13,12 @@ export default {
     return axios.post("/api/rating", { username: user, id: songId });
   },
   sendRating: function (user, songId, rating) {
-    return axios.post("/api/rateSong", { username: user, id: songId, rating: rating });
+    return axios.post("/api/rateSong", {
+      username: user,
+      id: songId,
+      rating: rating,
+    });
+
   },
   getUser: function (user) {
     return axios.post("/users/user", { username: user });
@@ -22,6 +27,6 @@ export default {
     return axios.post("/users/login", { username: user, password: pw });
   },
   createNewUser: function (user, pw) {
-    return axios.put("/users/user", { username: user, password: pw })
-  }
+    return axios.put("/users/user", { username: user, password: pw });
+  },
 };

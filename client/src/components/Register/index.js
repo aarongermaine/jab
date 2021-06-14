@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import API from "../../utils/API"
+import API from "../../utils/API";
 
 import "./style.css";
 function Register() {
@@ -14,23 +14,20 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordCheckVal, setPassCheckVal] = useState("");
 
-
   const handleSubmit = (event, username, password) => {
     event.preventDefault();
     if ([username, password].some((val) => val === "")) {
       return alert("Please fill all fields");
     } else {
-
       API.createNewUser(username, password).then((data) => {
-        alert("successfully created new user!")
-        setUsername("")
-        setPassword("")
-        setPassCheckVal("")
-        localStorage.setItem('loggedIn', true)
-        localStorage.setItem('user', username)
+        alert("successfully created new user!");
+        setUsername("");
+        setPassword("");
+        setPassCheckVal("");
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("user", username);
         window.location.replace("/");
-      })
-
+      });
     }
   };
 
@@ -106,9 +103,7 @@ function Register() {
             <Row className="w-100 p-0">
               <Col>
                 <Button
-                  onClick={(event) =>
-                    handleSubmit(event, username, password)
-                  }
+                  onClick={(event) => handleSubmit(event, username, password)}
                   disabled={password === passwordCheckVal ? false : true}
                   className="w-50 btn-info"
                 >

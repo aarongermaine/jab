@@ -15,9 +15,9 @@ const path = require("path");
 const MongoStore = require("connect-mongo");
 // const passport = require("./scripts/config");
 // const createError = require("http-errors");
-const PORT = process.env.NODE_PORT || 3001;
-const app = express();
 
+const PORT = process.env.PORT || 3001;
+const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,13 +29,8 @@ const myRoutes = require("./routes/index.js");
 
 app.use(myRoutes);
 
-
-
-
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
-
-
 
 // app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
@@ -56,8 +51,6 @@ app.use(
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-
-
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority"
 );
@@ -77,6 +70,6 @@ process.on("exit", () => {
   return process.exit();
 });
 
-process.once("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
+// process.once("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
 
-process.on("SIGINT", () => process.kill(process.pid, "SIGINT"));
+// process.on("SIGINT", () => process.kill(process.pid, "SIGINT"));

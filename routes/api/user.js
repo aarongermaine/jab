@@ -26,15 +26,16 @@ router.post("/login", async function (req, res) {
     .then((userObj) => {
       console.log(userObj);
       if (userObj) {
-        return userObj.checkPassword(req.body.password)
+        return userObj.checkPassword(req.body.password);
       } else {
-        return false
+        return false;
       }
     }).then((data) => {
       console.log("something", data);
       res.json(data);
     })
   res.status(404)
+
 });
 
 //create
@@ -42,6 +43,7 @@ router.put("/user", async function (req, res) {
   await User.create({ username: req.body.username, password: req.body.password })
   res.json("Successfully created new user!");
 })
+
 
 
 module.exports = router;
