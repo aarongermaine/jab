@@ -38,7 +38,7 @@ app.use(myRoutes);
 //   app.use(express.static("client/build"));
 // }
 
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(
   session({
