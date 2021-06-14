@@ -48,10 +48,6 @@ router.get("/allRatings", async function (req, res) {
 //will only find first
 //Can't send body with get with axios, so using post.
 router.post("/rating", async function (req, res) {
-    // console.log(req)
-
-    // console.log(req.body)
-    // res.json(req.body)
 
     let spotifySongId = req.body.id;
     let raterUsername = req.body.username;
@@ -158,18 +154,6 @@ router.post("/rateSong", async function (req, res) {
 
     // res.json(song)
 });
-
-
-// router.get("/song/:id/:rating", async function (req, res) {
-//     console.log(req.body)
-//     let song = await (await Songs.findOne({ id: req.params.Id }).exec()).toObject();
-//     song.rating = newRating(song.rating, song.numOfRatings, req.params.rating);
-//     song.numOfRatings = 1 + song.numOfRatings;
-//     let realID = req.params.Id
-//     let ressy = await Songs.updateOne({ id: realID }, { rating: song.rating, numOfRatings: song.numOfRatings })
-//     console.log(ressy)
-//     res.json(song)
-// })
 
 module.exports = router;
 

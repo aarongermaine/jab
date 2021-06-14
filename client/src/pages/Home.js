@@ -5,12 +5,28 @@ import RatingButton from "../components/RatingButton/index";
 import SongIFrame from "../components/SongIFrame/index";
 import API from "../utils/API";
 
+<<<<<<< HEAD
 let val = 0;
 class Home extends React.Component {
   constructor(props) {
     document.body.classList.add("thing");
     super(props);
     this.state = { user: "root", songsGotten: val };
+=======
+// let val = 0
+class Home extends React.Component {
+  constructor(props) {
+    document.body.classList.add("thing")
+    super(props)
+    // this.state = ({
+    //   user: "root"
+    //   // , songsGotten: val
+    // })
+    let user = localStorage.getItem("user")
+    this.state = ({
+      user: user
+    })
+>>>>>>> 61806939bd2a9be91df93174411e95f08651dfca
     // console.log("state", this.state)
     this.getSongsOnce().then((data) => {
       let songsArray = [];
@@ -29,10 +45,17 @@ class Home extends React.Component {
       }
       console.log(songsArray);
 
+<<<<<<< HEAD
       if (songsArray) {
         val = 1;
         this.setState({ songsGotten: 1, songs: songsArray, index: 0 });
       }
+=======
+      // if (songsArray) {
+      //   val = 1
+      this.setState({ songsGotten: 1, songs: songsArray, index: 0 })
+      // }
+>>>>>>> 61806939bd2a9be91df93174411e95f08651dfca
 
       // this.getRating().then((data) => { console.log(data) })
       this.generateStars(null);

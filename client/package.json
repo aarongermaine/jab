@@ -44,11 +44,6 @@
   ],
   "devDependencies": {
     "brunch": "^4.0.0",
-    "eslint-plugin-baseui": "^9.116.0",
-    "eslint-plugin-react": "^7.24.0",
     "terser-brunch": "^4.0.0"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   }
 }
