@@ -46,7 +46,7 @@ app.use(
   session({
     secret: "secret",
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost/jab-app",
+      mongoUrl: "mongodb://localhost/songRatingList",
     }),
     resave: false,
     saveUninitialized: true,

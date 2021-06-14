@@ -18,7 +18,7 @@ class Home extends React.Component {
     this.state = ({
       user: user
     })
-    // console.log("state", this.state)
+    console.log("state", this.state)
     this.getSongsOnce().then((data) => {
       let songsArray = []
       let songs = data.data
@@ -41,10 +41,10 @@ class Home extends React.Component {
       this.setState({ songsGotten: 1, songs: songsArray, index: 0 })
       // }
 
-      // this.getRating().then((data) => { console.log(data) })
+      this.getRating().then((data) => { console.log(data) })
       this.generateStars(null)
       this.setState({ complete: 1 })
-      // console.log("state", this.state)
+      console.log("state", this.state)
       document.body.classList.remove("thing")
     })
   }
@@ -114,7 +114,7 @@ class Home extends React.Component {
     if (optionalIndexOverride != null) {
 
       // console.log(this.state.songs[optionalIndexOverride].spotifyID)
-      // console.log(optionalIndexOverride)
+      console.log(optionalIndexOverride)
       return API.getRating(this.state.user, this.state.songs[optionalIndexOverride].spotifyID)
 
     } else {
@@ -142,8 +142,8 @@ class Home extends React.Component {
 
     let symbolArr = []
     this.getRating(realIndex).then((data) => {
-      // console.log("realIndex in generateStars", realIndex)
-      // console.log("rating", data.data)
+      console.log("realIndex in generateStars", realIndex)
+      console.log("rating", data.data)
       if (data.data != null) {
         // console.log(Math.floor(data.data.rating))
         // API.getSong(data.data.songId).then((data) => console.log("songData", data))
@@ -163,12 +163,7 @@ class Home extends React.Component {
     })
   }
 
-
-
-
-
   render() {
-
     if (this.state.index != undefined && this.state.filledStar != undefined) {
       return (
         < Container fluid >
@@ -182,7 +177,6 @@ class Home extends React.Component {
             <Col size="md-4"></Col>
             <Col size="md-4">
               <Arrow left={true} state={this.state} changeSong={this.goDownOneSong} generateStars={this.generateStars} />
-              {/* {this.generateStars()} */}
               <RatingButton rating={1} state={this.state} filled={this.state.filledStar[0]} sendRating={this.sendRating} generateStars={this.generateStars} />
               <RatingButton rating={2} state={this.state} filled={this.state.filledStar[1]} sendRating={this.sendRating} generateStars={this.generateStars} />
               <RatingButton rating={3} state={this.state} filled={this.state.filledStar[2]} sendRating={this.sendRating} generateStars={this.generateStars} />
