@@ -24,7 +24,7 @@ No installation required!
 
 ## Usage
 
-Simply go to the following link - [Site](https://jab-v1.herokuapp.com/)
+Simply go to the following link - [Site](https://jab-v1.herokuapp.com/) -Currently Down-
 
 ## Contributions
 
