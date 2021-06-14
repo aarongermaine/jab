@@ -5,8 +5,7 @@ const db = require("../models");
 // This file empties the Books collection and inserts the books below
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/songRatingList"
+  process.env.MONGODB_URI || "mongodb://localhost/songRatingList"
 );
 
 //spotify:track:2IRZnDFmlqMuOrYOLnZZyc
@@ -15,9 +14,9 @@ const userSeed = [
   {
     username: "root",
     password: "root",
-    email: "roo@roo.com"
-  }
-]
+    email: "roo@roo.com",
+  },
+];
 
 const songSeed = [
   {
@@ -27,7 +26,7 @@ const songSeed = [
     rating: 5,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Back To Back",
@@ -36,7 +35,7 @@ const songSeed = [
     rating: 4,
     numOfRatings: 12,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Dreams and Nightmares",
@@ -45,7 +44,7 @@ const songSeed = [
     rating: 3,
     numOfRatings: 8,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "War",
@@ -54,7 +53,7 @@ const songSeed = [
     rating: 2.5,
     numOfRatings: 15,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "The Box",
@@ -63,7 +62,7 @@ const songSeed = [
     rating: 3,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Stronger",
@@ -72,7 +71,7 @@ const songSeed = [
     rating: 4.0,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Intro",
@@ -81,7 +80,7 @@ const songSeed = [
     rating: 48.0,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Power",
@@ -90,7 +89,7 @@ const songSeed = [
     rating: 4.0,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "I'm Upset",
@@ -99,7 +98,7 @@ const songSeed = [
     rating: 1.5,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Jumpman",
@@ -108,7 +107,7 @@ const songSeed = [
     rating: 0.0,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Disco Inferno",
@@ -117,7 +116,7 @@ const songSeed = [
     rating: 22.0,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "That's Life",
@@ -126,7 +125,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Amo Bishop Roden",
@@ -135,7 +134,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Chill",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Beyond the Sea",
@@ -144,7 +143,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Sway (Quien Sera)",
@@ -153,7 +152,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "W.I.G.T.S.",
@@ -162,7 +161,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Chill",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Wen 222",
@@ -171,7 +170,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Rap",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Open Arms",
@@ -180,7 +179,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "All I Need",
@@ -189,7 +188,7 @@ const songSeed = [
     rating: 0,
     numOfRatings: 0,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Age of Consent - 2015 remaster",
@@ -198,7 +197,7 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
+    attribute: "",
   },
   {
     songTitle: "Slow This Bird Down",
@@ -207,32 +206,30 @@ const songSeed = [
     rating: 4.5,
     numOfRatings: 10,
     genre: "Pop",
-    attribute: ""
-  }
+    attribute: "",
+  },
 ];
 
-db.Song
-  .remove({})
+db.Song.remove({})
   .then(() => db.Song.collection.insertMany(songSeed))
-  .then(data => {
-    console.log('asfinosdfsd')
+  .then((data) => {
+    console.log("asfinosdfsd");
     console.log(data.result.n + " records inserted!");
     // process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     // process.exit(1);
   });
 
 const SingleUserSeed = new User(userSeed[0]);
-db.User
-  .remove({})
+db.User.remove({})
   .then(() => SingleUserSeed.save())
-  .then(data => {
+  .then((data) => {
     console.log("1 records inserted!");
     process.exit(0);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
     process.exit(1);
   });

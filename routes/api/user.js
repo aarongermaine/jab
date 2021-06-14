@@ -12,35 +12,37 @@ router.get("/allAccounts", async function (req, res) {
 
 //lookup 1
 router.post("/user", async function (req, res) {
-  console.log("got request for", req.body.username)
-  let username1 = req.body.username
+  console.log("got request for", req.body.username);
+  let username1 = req.body.username;
   let something = await User.findOne({ username: username1 });
-  console.log(something)
+  console.log(something);
   res.json(something);
 });
 router.post("/login", async function (req, res) {
-  console.log("got request for", req.body.username)
-  console.log("pw", req.body.password)
+  console.log("got request for", req.body.username);
+  console.log("pw", req.body.password);
   await User.findOne({ username: req.body.username })
     .then((userObj) => {
-      console.log(userObj)
+      console.log(userObj);
       if (userObj) {
-        return userObj.checkPassword(req.body.password)
+        return userObj.checkPassword(req.body.password);
       } else {
-        return false
+        return false;
       }
-    }).then((data) => {
-      console.log("something", data)
-      res.json(data)
     })
-
+    .then((data) => {
+      console.log("something", data);
+      res.json(data);
+    });
 });
 
 //create
 router.put("/user", async function (req, res) {
-  await User.create({ username: req.body.username, password: req.body.password })
-  res.json("Successfully created new user!")
-})
-
+  await User.create({
+    username: req.body.username,
+    password: req.body.password,
+  });
+  res.json("Successfully created new user!");
+});
 
 module.exports = router;

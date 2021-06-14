@@ -34,7 +34,9 @@ userSchema.pre(
         user.password = hashedPassword;
         next();
       })
-      .catch((err) => { throw err });
+      .catch((err) => {
+        throw err;
+      });
   },
   function (err) {
     next(err);
@@ -44,7 +46,7 @@ userSchema.pre(
 userSchema.methods = {
   checkPassword: function (inputPassword) {
     return bcrypt.compareSync(inputPassword, this.password);
-  }
+  },
 };
 
 const User = mongoose.model("User", userSchema);
