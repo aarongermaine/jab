@@ -38,13 +38,15 @@ app.use(myRoutes);
 //   app.use(express.static("client/build"));
 // }
 
-app.use("/static", express.static(path.join(__dirname, "client/build")));
+app.use("/static", express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
     secret: "secret",
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority",
+      mongoUrl:
+        process.env.MONGODB_URI ||
+        "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority",
     }),
     resave: false,
     saveUninitialized: true,
@@ -55,7 +57,8 @@ app.use(
 // app.use(passport.session());
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority"
+  process.env.MONGODB_URI ||
+    "mongodb+srv://brandon:xUUjvi9SPfCDpqOw@brandonscluster.f6shj.mongodb.net/song_db?retryWrites=true&w=majority"
 );
 
 // require('./routes/api/song.js')(app);
